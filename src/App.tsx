@@ -1,8 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import styled from 'styled-components'
 import './App.css'
+import { Header } from './Header'
+import DATA from './data.json'
 
-const App: React.FC = () => {
-  return <div>Hello</div>
+interface Mail {
+  subject: string
+  body: string
+  from: { name: string; email: string }
 }
 
-export default App
+const Layout: React.FC = styled.div`
+  width: 100%;
+`
+const Wrapper: React.FC = styled.div`
+  border: 1px solid red;
+`
+
+/**
+ * ------------------- COMPONENT ---------------------
+ */
+const App: React.FC = () => {
+  const [mails, setMails] = useState<Mail[]>(DATA)
+
+  return (
+    <Layout>
+      <Header />
+      <Wrapper>{mails.map(mail => {})}</Wrapper>
+    </Layout>
+  )
+}
+
+export { App }
