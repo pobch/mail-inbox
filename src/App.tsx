@@ -19,10 +19,10 @@ export interface Mail {
 /**
  * -------------------- STYLES -----------------------
  */
-const Layout: React.FC = styled.div`
+const Layout = styled.div`
   width: 100%;
 `
-const Wrapper: React.FC = styled.div`
+const MailWrapper = styled.div`
   border: 1px solid red;
 `
 
@@ -31,7 +31,6 @@ const Wrapper: React.FC = styled.div`
  */
 const App: React.FC = () => {
   const [mails, setMails] = useState<Mail[]>(initialState)
-  console.log(mails)
 
   const handleDelete = (id: string): React.EventHandler<React.MouseEvent> => {
     return () => {
@@ -55,7 +54,7 @@ const App: React.FC = () => {
   return (
     <Layout>
       <Header />
-      <Wrapper>
+      <MailWrapper>
         {mails.map(mail => (
           <MailItem
             key={mail.id}
@@ -67,7 +66,7 @@ const App: React.FC = () => {
             onClick={handleChecked(mail.id)}
           />
         ))}
-      </Wrapper>
+      </MailWrapper>
     </Layout>
   )
 }
