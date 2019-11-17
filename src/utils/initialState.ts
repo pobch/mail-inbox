@@ -8,7 +8,7 @@ interface RawData {
 }
 
 function transformData(data: RawData[]): Mail[] {
-  return data.map(data => ({ ...data, checked: false }))
+  return data.map((data, index) => ({ ...data, checked: false, id: index + 1 }))
 }
 
 export const initialState = transformData(DATA)

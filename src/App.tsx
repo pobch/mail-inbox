@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import './App.css'
-import { Header } from './Header'
 import { initialState } from './utils/initialState'
+import { Header } from './Header'
+import { MailItem } from './MailItem'
 
 /**
  * ------------------- TYPES ------------------------
  */
 export interface Mail {
+  id: number
   subject: string
   body: string
   from: { name: string; email: string }
@@ -29,12 +31,42 @@ const Wrapper: React.FC = styled.div`
  */
 const App: React.FC = () => {
   const [mails, setMails] = useState<Mail[]>(initialState)
-  // console.log(mails)
+
+  const handleDelete = (id: number): React.EventHandler<React.MouseEvent> => {
+    return () => {
+      setMails(prevMails => prevMails.filter(mail => mail.id !== id))
+    }
+  }
+
+  const handleChecked = (id: number): React.EventHandler<React.MouseEvent> => {
+    return () => {
+      setMails(prevMails =>
+        prevMails.map(mail => {
+          if (mail.id === id) {
+            return { ...mail, checked: !mail.checked }
+          }
+          return mail
+        })
+      )
+    }
+  }
 
   return (
     <Layout>
       <Header />
-      <Wrapper>{mails.map(mail => {})}</Wrapper>
+      <Wrapper>
+        {mails.map(mail => (
+          <MailItem
+            key={mail.id}
+            subject={mail.subject}
+            body={mail.body}
+            sender={mail.from.name}
+            checked={mail.checked}
+            handleDelete={handleDelete(mail.id)}
+            onClick={handleChecked(mail.id)}
+          />
+        ))}
+      </Wrapper>
     </Layout>
   )
 }
