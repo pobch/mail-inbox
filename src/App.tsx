@@ -4,6 +4,9 @@ import './App.css'
 import { Header } from './Header'
 import { initialState } from './utils/initialState'
 
+/**
+ * ------------------- TYPES ------------------------
+ */
 export interface Mail {
   subject: string
   body: string
@@ -11,6 +14,9 @@ export interface Mail {
   checked: boolean
 }
 
+/**
+ * -------------------- STYLES -----------------------
+ */
 const Layout: React.FC = styled.div`
   width: 100%;
 `
