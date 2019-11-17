@@ -2,12 +2,13 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import './App.css'
 import { Header } from './Header'
-import DATA from './data.json'
+import { initialState } from './utils/initialState'
 
-interface Mail {
+export interface Mail {
   subject: string
   body: string
   from: { name: string; email: string }
+  checked: boolean
 }
 
 const Layout: React.FC = styled.div`
@@ -21,7 +22,8 @@ const Wrapper: React.FC = styled.div`
  * ------------------- COMPONENT ---------------------
  */
 const App: React.FC = () => {
-  const [mails, setMails] = useState<Mail[]>(DATA)
+  const [mails, setMails] = useState<Mail[]>(initialState)
+  // console.log(mails)
 
   return (
     <Layout>
