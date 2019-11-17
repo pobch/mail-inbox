@@ -9,7 +9,7 @@ import { MailItem } from './MailItem'
  * ------------------- TYPES ------------------------
  */
 export interface Mail {
-  id: number
+  id: string
   subject: string
   body: string
   from: { name: string; email: string }
@@ -31,14 +31,15 @@ const Wrapper: React.FC = styled.div`
  */
 const App: React.FC = () => {
   const [mails, setMails] = useState<Mail[]>(initialState)
+  console.log(mails)
 
-  const handleDelete = (id: number): React.EventHandler<React.MouseEvent> => {
+  const handleDelete = (id: string): React.EventHandler<React.MouseEvent> => {
     return () => {
       setMails(prevMails => prevMails.filter(mail => mail.id !== id))
     }
   }
 
-  const handleChecked = (id: number): React.EventHandler<React.MouseEvent> => {
+  const handleChecked = (id: string): React.EventHandler<React.MouseEvent> => {
     return () => {
       setMails(prevMails =>
         prevMails.map(mail => {
