@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import './App.css'
 import { initialState } from './utils/initialState'
 import { Header } from './Header'
@@ -24,6 +25,14 @@ const Layout = styled.div`
 `
 const MailWrapper = styled.div`
   border: 1px solid red;
+
+  & .mail-exit {
+    opacity: 1;
+  }
+  & .mail-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+  }
 `
 
 /**
@@ -55,17 +64,20 @@ const App: React.FC = () => {
     <Layout>
       <Header />
       <MailWrapper>
-        {mails.map(mail => (
-          <MailItem
-            key={mail.id}
-            subject={mail.subject}
-            body={mail.body}
-            sender={mail.from.name}
-            checked={mail.checked}
-            handleDelete={handleDelete(mail.id)}
-            onClick={handleChecked(mail.id)}
-          />
-        ))}
+        <TransitionGroup>
+          {mails.map(mail => (
+            <CSSTransition key={mail.id} timeout={300} classNames="mail">
+              <MailItem
+                subject={mail.subject}
+                body={mail.body}
+                sender={mail.from.name}
+                checked={mail.checked}
+                handleDelete={handleDelete(mail.id)}
+                onClick={handleChecked(mail.id)}
+              />
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       </MailWrapper>
     </Layout>
   )
