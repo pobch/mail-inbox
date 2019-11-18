@@ -79,7 +79,7 @@ const App: React.FC = () => {
                 checked={mail.checked}
                 receivedAt={mail.receivedAt}
                 handleDelete={handleDelete(mail.id)}
-                onClick={handleChecked(mail.id)}
+                handleChecked={handleChecked(mail.id)}
               />
             </CSSTransition>
           ))}

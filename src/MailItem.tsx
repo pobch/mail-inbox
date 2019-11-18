@@ -14,8 +14,9 @@ interface MailProps {
   sender: string
   checked: boolean
   receivedAt: string
+  // Event handlers
   handleDelete: React.EventHandler<React.MouseEvent>
-  onClick: React.EventHandler<React.MouseEvent>
+  handleChecked: React.EventHandler<React.MouseEvent>
 }
 
 /**
@@ -82,7 +83,7 @@ const BtnDelete = styled(FontAwesomeIcon)`
 const MailItem: React.FC<MailProps> = props => {
   return (
     <MailItemWrapper checked={props.checked}>
-      <Checked onClick={props.onClick}>
+      <Checked onClick={props.handleChecked}>
         <FontAwesomeIcon icon={props.checked ? faEnvelopeOpen : faEnvelope} />
       </Checked>
       <Sender>{props.sender}</Sender>
