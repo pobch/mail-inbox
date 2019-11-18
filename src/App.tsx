@@ -25,8 +25,6 @@ const Layout = styled.div`
   width: 100%;
 `
 const MailWrapper = styled.div`
-  border: 1px solid red;
-
   /* animation while removing a mail item */
   & .mail-exit {
     opacity: 1;

@@ -40,6 +40,7 @@ const Checked = styled.div`
   cursor: pointer;
   font-size: 30px;
   color: salmon;
+  -webkit-tap-highlight-color: transparent;
 `
 const Sender = styled.div`
   grid-column: 2 / 3;

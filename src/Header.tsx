@@ -1,10 +1,25 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const HeaderBar = styled.header`
+  position: sticky;
+  top: 0;
+  padding: 5px 0;
+  background-color: white;
+  /* box-shadow: h-offset v-offset blur spread color; */
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+`
+const Heading = styled.h1`
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 500;
+`
 
 const Header: React.FC = () => {
   return (
-    <header style={{ position: 'sticky', top: '0' }}>
-      <h1>Inbox</h1>
-    </header>
+    <HeaderBar>
+      <Heading>Inbox</Heading>
+    </HeaderBar>
   )
 }
 
