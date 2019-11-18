@@ -5,6 +5,7 @@ import './App.css'
 import { initialState } from './utils/initialState'
 import { Header } from './Header'
 import { MailItem } from './MailItem'
+import { MEDIA } from './utils/mediaQueries'
 
 /**
  * ------------------- TYPES ------------------------
@@ -23,6 +24,10 @@ export interface Mail {
  */
 const Layout = styled.div`
   width: 100%;
+  ${MEDIA.DESKTOP`
+    max-width: 768px;
+    margin: 0 auto;
+  `}
 `
 const MailWrapper = styled.div`
   /* animation while removing a mail item */

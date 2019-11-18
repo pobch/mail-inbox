@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faEnvelopeOpen, faTrashAlt } from '@fortawesome/free-regular-svg-icons'
+import { MEDIA } from './utils/mediaQueries'
 
 /**
  * ------------------------ TYPES ------------------------------
@@ -53,6 +54,9 @@ const Heading = styled.h2`
   grid-column: 2 / 3;
   font-size: 1rem;
   font-weight: normal;
+  ${MEDIA.DESKTOP`
+    font-weight: bold;
+  `}
 `
 const TimeStamp = styled.div`
   color: #8a8a8a;
