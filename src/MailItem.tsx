@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faEnvelopeOpen } from '@fortawesome/free-regular-svg-icons'
 
 /**
  * ------------------------ TYPES ------------------------------
@@ -65,7 +68,9 @@ const BtnDelete = styled.button`
 const MailItem: React.FC<MailProps> = props => {
   return (
     <MailItemWrapper checked={props.checked}>
-      <Checked onClick={props.onClick}>{`${props.checked}`}</Checked>
+      <Checked onClick={props.onClick}>
+        <FontAwesomeIcon icon={props.checked ? faEnvelopeOpen : faEnvelope} />
+      </Checked>
       <Sender>{props.sender}</Sender>
       <BtnWrapper>
         <BtnDelete onClick={props.handleDelete}>DEL</BtnDelete>
