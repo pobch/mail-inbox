@@ -15,6 +15,7 @@ export interface Mail {
   body: string
   from: { name: string; email: string }
   checked: boolean
+  receivedAt: string // dummy timestamp
 }
 
 /**
@@ -26,6 +27,7 @@ const Layout = styled.div`
 const MailWrapper = styled.div`
   border: 1px solid red;
 
+  /* animation while removing a mail item */
   & .mail-exit {
     opacity: 1;
   }
@@ -72,6 +74,7 @@ const App: React.FC = () => {
                 body={mail.body}
                 sender={mail.from.name}
                 checked={mail.checked}
+                receivedAt={mail.receivedAt}
                 handleDelete={handleDelete(mail.id)}
                 onClick={handleChecked(mail.id)}
               />

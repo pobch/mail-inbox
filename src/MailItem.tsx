@@ -12,6 +12,7 @@ interface MailProps {
   body: string
   sender: string
   checked: boolean
+  receivedAt: string
   handleDelete: React.EventHandler<React.MouseEvent>
   onClick: React.EventHandler<React.MouseEvent>
 }
@@ -23,10 +24,10 @@ interface MailProps {
 // Grid Container
 const MailItemWrapper = styled.article<{ checked: boolean }>`
   border-top: 1px solid #ddd;
-  padding: 10px 20px;
+  padding: 10px;
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
-  grid-gap: 0 10px;
+  grid-gap: 3px 10px;
   ${props => props.checked && `background-color: #ddd;`}
 `
 
@@ -51,6 +52,10 @@ const Heading = styled.h2`
   grid-column: 2 / 3;
   font-size: 1rem;
   font-weight: normal;
+`
+const TimeStamp = styled.div`
+  color: #8a8a8a;
+  font-size: 0.7rem;
 `
 const Content = styled.p`
   grid-column: 2 / 3;
@@ -80,6 +85,7 @@ const MailItem: React.FC<MailProps> = props => {
         <BtnDelete onClick={props.handleDelete} icon={faTrashAlt} />
       </BtnWrapper>
       <Heading>{props.subject}</Heading>
+      <TimeStamp>{props.receivedAt}</TimeStamp>
       <Content>{props.body}</Content>
     </MailItemWrapper>
   )
