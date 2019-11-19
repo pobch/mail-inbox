@@ -27,6 +27,7 @@ const Layout = styled.div`
   ${MEDIA.DESKTOP`
     max-width: 768px;
     margin: 0 auto;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   `}
 `
 const MailWrapper = styled.div`
