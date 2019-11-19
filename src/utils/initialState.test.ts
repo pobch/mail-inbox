@@ -21,6 +21,16 @@ const mockData = [
   }
 ]
 
+it('handles null data', () => {
+  const result = transformData(null)
+  expect(result).toEqual([])
+})
+
+it('handles empty data', () => {
+  const result = transformData([])
+  expect(result).toEqual([])
+})
+
 it('correctly add properties with default values into raw data from backend API', () => {
   const result = transformData(mockData)
   result.forEach((value, index) => {

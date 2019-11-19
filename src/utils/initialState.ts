@@ -8,7 +8,10 @@ interface RawData {
   from: { name: string; email: string }
 }
 
-export function transformData(data: RawData[]): Mail[] {
+export function transformData(data: RawData[] | null): Mail[] {
+  if (!data || data.length === 0) {
+    return []
+  }
   return data.map(data => ({ ...data, checked: false, id: uuidv4(), receivedAt: '09:53' }))
 }
 

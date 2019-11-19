@@ -2,6 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { MEDIA } from './utils/mediaQueries'
 
+/**
+ * -------------------- STYLES -----------------------
+ */
 const HeaderBar = styled.header`
   position: sticky;
   top: 0;
@@ -12,7 +15,8 @@ const HeaderBar = styled.header`
   ${MEDIA.DESKTOP`
     box-shadow: none;
     padding: 10px 0;
-    border-bottom: 2px dashed #8a8a8a;
+    background-color: #333;
+    color: white;
   `}
 `
 const Heading = styled.h1`
@@ -25,6 +29,9 @@ const Heading = styled.h1`
   `}
 `
 
+/**
+ * ------------------- COMPONENT ---------------------
+ */
 const Header: React.FC = () => {
   return (
     <HeaderBar>
