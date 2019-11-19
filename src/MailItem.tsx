@@ -89,13 +89,16 @@ const BtnDelete = styled(FontAwesomeIcon)`
  */
 const MailItem: React.FC<MailProps> = props => {
   return (
-    <MailItemWrapper checked={props.checked} onClick={props.handleChecked}>
+    <MailItemWrapper checked={props.checked} onClick={props.handleChecked} data-testid="mail-item">
       <Checked>
-        <FontAwesomeIcon icon={props.checked ? faEnvelopeOpen : faEnvelope} />
+        <FontAwesomeIcon
+          icon={props.checked ? faEnvelopeOpen : faEnvelope}
+          data-testid="icon-mail"
+        />
       </Checked>
       <Sender>{props.sender}</Sender>
       <BtnWrapper>
-        <BtnDelete onClick={props.handleDelete} icon={faTrashAlt} />
+        <BtnDelete onClick={props.handleDelete} icon={faTrashAlt} data-testid="icon-trash" />
       </BtnWrapper>
       <Heading>{props.subject}</Heading>
       <TimeStamp>{props.receivedAt}</TimeStamp>
