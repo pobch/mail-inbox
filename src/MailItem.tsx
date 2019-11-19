@@ -14,7 +14,7 @@ interface MailProps {
   sender: string
   checked: boolean
   receivedAt: string
-  // Event handlers
+  // Event handler props
   handleDelete: React.EventHandler<React.MouseEvent>
   handleChecked: React.EventHandler<React.MouseEvent>
 }
@@ -30,6 +30,8 @@ const MailItemWrapper = styled.article<{ checked: boolean }>`
   display: grid;
   grid-template-columns: 1fr 6fr 1fr;
   grid-gap: 3px 10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
   ${props => props.checked && `background-color: #ddd;`}
 `
 
@@ -39,10 +41,9 @@ const Checked = styled.div`
   grid-row: 1 / span 3;
   align-self: center;
   justify-self: center;
-  cursor: pointer;
-  font-size: 30px;
   color: salmon;
-  -webkit-tap-highlight-color: transparent;
+  font-size: 27px;
+  ${MEDIA.DESKTOP`font-size: 30px;`}
 `
 const Sender = styled.div`
   grid-column: 2 / 3;
@@ -75,6 +76,12 @@ const Content = styled.p`
 const BtnDelete = styled(FontAwesomeIcon)`
   cursor: pointer;
   color: #8a8a8a;
+  -webkit-tap-highlight-color: transparent;
+
+  &:hover,
+  &:active {
+    color: salmon;
+  }
 `
 
 /**
@@ -82,8 +89,8 @@ const BtnDelete = styled(FontAwesomeIcon)`
  */
 const MailItem: React.FC<MailProps> = props => {
   return (
-    <MailItemWrapper checked={props.checked}>
-      <Checked onClick={props.handleChecked}>
+    <MailItemWrapper checked={props.checked} onClick={props.handleChecked}>
+      <Checked>
         <FontAwesomeIcon icon={props.checked ? faEnvelopeOpen : faEnvelope} />
       </Checked>
       <Sender>{props.sender}</Sender>

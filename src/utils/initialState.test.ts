@@ -23,15 +23,13 @@ const mockData = [
 
 it('correctly add properties with default values into raw data from backend API', () => {
   const result = transformData(mockData)
-  result.forEach(value => {
+  result.forEach((value, index) => {
+    // new properties
     expect(value.checked).toBe(false)
     expect(value.id.length).toBeGreaterThan(0)
     expect(value.receivedAt.length).toBeGreaterThan(0)
-    expect(value.subject).toMatch(/subject/i)
-    expect(value.body).toMatch(/body/i)
-    expect(value.from).toEqual({
-      name: expect.stringMatching(/sender name/i),
-      email: expect.stringMatching(/@test.com/i)
-    })
+
+    // existing properties should stay untouched
+    expect(value).toMatchObject(mockData[index])
   })
 })

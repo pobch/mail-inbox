@@ -47,7 +47,8 @@ const App: React.FC = () => {
   const [mails, setMails] = useState<Mail[]>(initialState)
 
   const handleDelete = (id: string): React.EventHandler<React.MouseEvent> => {
-    return () => {
+    return e => {
+      e.stopPropagation()
       setMails(prevMails => prevMails.filter(mail => mail.id !== id))
     }
   }
