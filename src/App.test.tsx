@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom/extend-expect'
 import React from 'react'
-import { render, fireEvent } from '@testing-library/react'
+import { render, fireEvent, wait } from '@testing-library/react'
 import { App } from './App'
-import mockData from './data.json'
 
 jest.mock('./data.json', () => {
   return [
@@ -27,8 +26,12 @@ jest.mock('./data.json', () => {
   ]
 })
 
-it('renders important children', () => {
+it('correctly renders all children', () => {
   const { getByText, getAllByTestId } = render(<App />)
+
+  expect(getAllByTestId('mail-item')).toHaveLength(2)
+  expect(getAllByTestId('icon-mail')).toHaveLength(2)
+  expect(getAllByTestId('icon-trash')).toHaveLength(2)
 
   expect(getByText(/sender name #1/i)).toBeInTheDocument()
   expect(getByText(/short subject/i)).toBeInTheDocument()
@@ -37,9 +40,6 @@ it('renders important children', () => {
   expect(getByText(/sender name #2/i)).toBeInTheDocument()
   expect(getByText(/long subject/i)).toBeInTheDocument()
   expect(getByText(/long body/i)).toBeInTheDocument()
-
-  expect(getAllByTestId('icon-mail').length).toEqual(2)
-  expect(getAllByTestId('icon-trash').length).toEqual(2)
 })
 
 it('first renders all mail icons in closed-envelope state', () => {
@@ -61,7 +61,7 @@ it('first renders all mail items without background color', () => {
 it('changes the mail icon and background color after clicking the mail item', () => {
   const { getAllByTestId, getByText } = render(<App />)
 
-  // click
+  // click the 2nd mail item
   fireEvent.click(getByText(/long subject/i))
 
   // background color after clicking
@@ -80,4 +80,16 @@ it('changes the mail icon and background color after clicking the mail item', ()
       expect(element).toHaveAttribute('data-icon', 'envelope')
     }
   })
+})
+
+it('removes the mail item after clicking the trash icon', async () => {
+  const { getAllByTestId, getByText, queryByText } = render(<App />)
+
+  // click the 1st mail item
+  fireEvent.click(getAllByTestId('icon-trash')[0])
+
+  // after clicking the trash icon of 1st mail item
+  await wait(() => expect(getAllByTestId('mail-item')).toHaveLength(1))
+  expect(queryByText(/short subject/i)).toBeNull()
+  expect(getByText(/long subject/i)).toBeInTheDocument()
 })
